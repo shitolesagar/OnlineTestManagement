@@ -1,0 +1,102 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.QuestionViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+}
+<h1>Question Edit</h1>
+
+<form asp-controller="Question" asp-action="edit" autocomplete="off" id="Questionform" enctype="multipart/form-data">
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="Question" class="control-label float-label mt-2">Question</label>
+                <input type="text" asp-for="Question" placeholder="Question" class="form-control" />
+                <span asp-validation-for="Question" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1" hidden="hidden">
+        <div class="col-md-9">
+            <div class="form-group">
+                <input type="text" asp-for="Id"  class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="Option1" class="control-label float-label mt-2">Option1</label>
+                <input type="text" asp-for="Option1" placeholder="Option1" class="form-control" />
+                <span asp-validation-for="Option1" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="Option2" class="control-label float-label mt-2">Option2</label>
+                <input type="text" asp-for="Option2" placeholder="Option2" class="form-control" />
+                <span asp-validation-for="Option2" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="Option3" class="control-label float-label mt-2">Option3</label>
+                <input type="text" asp-for="Option3" placeholder="Option3" class="form-control" />
+                <span asp-validation-for="Option3" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="Option4" class="control-label float-label mt-2">Option4</label>
+                <input type="text" asp-for="Option4" placeholder="Option4" class="form-control" />
+                <span asp-validation-for="Option4" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="CorrectAnswer" class="control-label float-label mt-2">CorrectAnswer</label>
+                <input type="text" asp-for="CorrectAnswer" placeholder="CorrectAnswer" class="form-control" />
+                <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
+                <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="detailBtn-group">
+        <button id="btnSubmit" type="submit" class="btn btn-primary  mr-2">Update</button>
+        <a asp-controller="Question" asp-action="index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+
+        $(document).ready(function () {
+            $('#Date').datepicker({
+            });
+        })
+    </script>
+
+}
+

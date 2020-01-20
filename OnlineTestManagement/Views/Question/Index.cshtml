@@ -1,0 +1,37 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.QuestionWrapperViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<button type="button" class="col-md-2" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
+<div class="row">
+    <h1 class="col-md-4">Index</h1>
+    <button type="button" class="col-md-4" onclick="location.href='@Url.Action("Add","Question")'">Add New Question</button>
+</div>
+
+<div id="indexPartialContent">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th width="20%">Question</th>
+                <th width="20%">Created By</th>
+                <th width="20%" class="text-center">Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var question in Model.QuestionList)
+            {
+                <tr>
+                    <td>@question.Question</td>
+                    <td>@question.CreatedBy</td>
+                    <td class="text-center">
+                        <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/Question/edit/@question.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
+                        <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@question.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<partial name="_deletePopup" />
+
