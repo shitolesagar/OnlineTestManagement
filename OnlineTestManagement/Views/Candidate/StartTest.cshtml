@@ -1,0 +1,54 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.TestDetailsViewModel
+@{
+    ViewData["Title"] = "StartTest";
+}
+
+<h1>Test</h1>
+
+<input type="text" id="CandidateExamId" value="@Model.CandidateExamId" />
+<div class="accordion" id="accordionExample">
+    @{
+        int i = 0;
+    }
+    @foreach (var obj in Model.QuestionList)
+    {
+        i++;
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@("collapse" + i)" aria-expanded="true" aria-controls="collapseOne">
+                        @obj.Question
+                    </button>
+                </h2>
+            </div>
+            <div id="@("collapse" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <input type="text" id="QuestionId" value="@obj.Id" />
+                    <form>
+                        <fieldset id="@("group" + i)">
+                            <input type="radio" name="answer" id="Option" value=@obj.Option1 />@obj.Option1<br />
+                            <input type="radio" name="answer" id="Option" value=@obj.Option2 />@obj.Option2<br />
+                            <input type="radio" name="answer" id="Option" value=@obj.Option3 />@obj.Option3<br />
+                            <input type="radio" name="answer" id="Option" value=@obj.Option4 />@obj.Option4<br />
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        var notificationType = $('input[type=radio][name=Type]:checked').val();
+        $(document).ready(function () {
+
+            console.log($("#CandidateExamId").val());
+            console.log($("#QuestionId").val());
+
+        });
+    </script>
+}
+

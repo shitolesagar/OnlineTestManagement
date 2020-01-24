@@ -20,14 +20,17 @@
         <tbody>
             @foreach (var question in Model.QuestionList)
             {
-                <tr>
-                    <td>@question.Question</td>
-                    <td>@question.CreatedBy</td>
-                    <td class="text-center">
-                        <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/Question/edit/@question.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
-                        <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@question.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
-                    </td>
-                </tr>
+            <tr>
+                <td>@question.Question</td>
+                <td>@question.CreatedBy</td>
+                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Edit", "Question", new { id = question.Id})"'>Edit Question</button></td>
+                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Delete", "Question", new { id = question.Id})"'>Delete Question</button></td>
+                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Question", new { id = question.Id})"'>Details</button></td>
+                @*<td class="text-center">
+                    <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/Question/edit/@question.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
+                    <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@question.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+                </td>*@
+            </tr>
             }
         </tbody>
     </table>

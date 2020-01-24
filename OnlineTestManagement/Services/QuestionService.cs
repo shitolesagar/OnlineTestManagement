@@ -103,12 +103,14 @@ namespace OnlineTestManagement.Services
         #endregion
 
         #region GetQuestionDetails
-        public QuestionViewModel GetQuestionDetails(int id)
+        public QuestionDetailsViewModel GetQuestionDetails(int id)
         {
-            QuestionViewModel model = _questionRepository.GetQuestionDetails(id);
+            QuestionDetailsViewModel model = _questionRepository.GetQuestionDetails(id);
             return model;
         }
+        #endregion
 
+        #region DeleteQuestion
         public void DeleteQuestion(int id)
         {
             _questionRepository.DeleteQuestion(id);

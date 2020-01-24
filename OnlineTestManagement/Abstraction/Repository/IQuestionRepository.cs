@@ -12,7 +12,8 @@ namespace OnlineTestManagement.Abstraction.Repository
         void AddQuestion(QuestionViewModel model);
         QuestionViewModel GetQuestionForEdit(int id);
         void EditQuestion(int id, QuestionViewModel model);
-        QuestionViewModel GetQuestionDetails(int id);
+        QuestionDetailsViewModel GetQuestionDetails(int id);
         void DeleteQuestion(int id);
+        
     }
 }

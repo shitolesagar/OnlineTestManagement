@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineTestManagement.Abstraction.Services;
 using OnlineTestManagement.Entities.ViewModels;
@@ -18,6 +19,7 @@ namespace OnlineTestManagement.Controllers
         {
             _questionService = questionService;
         }
+
         public IActionResult Index()
         {
            

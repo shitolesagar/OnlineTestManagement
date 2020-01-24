@@ -33,3 +33,15 @@ E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreap
 E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Question\Edit.g.cshtml.cs
 E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Question\Details.g.cshtml.cs
 E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Question\_deletePopup.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Account\Index.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Test\Index.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Test\Add.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Test\_deletePopup.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Test\Edit.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Test\Details.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\Index.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\Add.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\Edit.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\Details.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\_deletePopup.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\StartTest.g.cshtml.cs

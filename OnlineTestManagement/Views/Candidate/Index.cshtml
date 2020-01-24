@@ -1,0 +1,40 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.CandidateWrapperViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<button type="button" class="col-md-2" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
+<div class="row">
+    <h1 class="col-md-4">Index</h1>
+    <button type="button" class="col-md-4" onclick="location.href='@Url.Action("Add","Candidate")'">Add New Candidate</button>
+</div>
+
+<div id="indexPartialContent">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th width="20%">Name</th>
+                <th width="20%">Applied For</th>
+                <th width="20%" class="text-center">Manage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var candidate in Model.CandidateList)
+            {
+            <tr>
+                <td>@candidate.Name</td>
+                <td>@candidate.AppliedFor</td>
+                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Edit", "Candidate", new { id = candidate.Id})"'>Edit Candidate</button></td>
+                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Candidate", new { id = candidate.Id})"'>Details</button></td>
+                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("SendTest", "Candidate", new { id = candidate.Id})"'>Send Test</button></td>
+                @*<td class="text-center">
+            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/test/edit/@test.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
+            <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@test.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+        </td>*@
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<partial name="_deletePopup" />
+

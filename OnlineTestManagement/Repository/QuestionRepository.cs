@@ -10,12 +10,13 @@ namespace OnlineTestManagement.Repository
 {
     public class QuestionRepository : IQuestionRepository
     {
+        #region AddQuestion
         public void AddQuestion(QuestionViewModel model)
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
             string queryString =
             "INSERT INTO OnlineTestManagement.Question(Question, Option1, Option2, Option3, Option4, CorrectAnswer, CreatedOn, ModifiedOn, CreatedBy, LevelId, SubjectId) " + 
-                   "VALUES ('"+model.Question+"','"+model.Option1+"','"+model.Option2+"','"+model.Option3+"','"+model.Option4+"','"+model.CorrectAnswer+"',@date,@date1,'"+model.CreatedBy+"',1,1) ";
+                   "VALUES ('"+model.Question+"','"+model.Option1+"','"+model.Option2+"','"+model.Option3+"','"+model.Option4+"','"+model.CorrectAnswer+"',@date,@date1,'"+model.CreatedBy+"',"+model.LevelId+","+model.SubjectId+") ";
             using (MySqlConnection connection =
                        new MySqlConnection(connectionString))
             {
@@ -33,7 +34,9 @@ namespace OnlineTestManagement.Repository
 
             return;
         }
+        #endregion
 
+        #region DeleteQuestion
         public void DeleteQuestion(int id)
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
@@ -58,12 +61,14 @@ namespace OnlineTestManagement.Repository
 
             return;
         }
+        #endregion
 
+        #region EditQuestion
         public void EditQuestion(int id, QuestionViewModel model)
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
             string queryString =
-            "update OnlineTestManagement.Question set Question = '"+model.Question+"', Option1 = '"+model.Option1+"', Option2 = '"+model.Option2+"',Option3='"+model.Option3+"',Option4='"+model.Option4+"',CorrectAnswer='"+model.CorrectAnswer+"',CreatedBy='"+model.CreatedBy+"',ModifiedOn=@date,LevelId=1,SubjectId=1 where Id ="+model.Id+" ";
+            "update OnlineTestManagement.Question set Question = '"+model.Question+"', Option1 = '"+model.Option1+"', Option2 = '"+model.Option2+"',Option3='"+model.Option3+"',Option4='"+model.Option4+"',CorrectAnswer='"+model.CorrectAnswer+"',CreatedBy='"+model.CreatedBy+"',ModifiedOn=@date,LevelId="+model.LevelId+",SubjectId="+model.SubjectId+" where Id ="+model.Id+" ";
             using (MySqlConnection connection =
                        new MySqlConnection(connectionString))
             {
@@ -80,7 +85,9 @@ namespace OnlineTestManagement.Repository
 
             return;
         }
+        #endregion
 
+        #region GetAllQuestions
         public List<QuestionViewModel> GetAllQuestions()
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
@@ -101,6 +108,7 @@ namespace OnlineTestManagement.Repository
                 while (reader.Read())
                 {
                     QuestionViewModel obj = new QuestionViewModel();
+                    obj.Id = (int)reader[0];
                     obj.Question = reader[1].ToString();
                     obj.CreatedBy = reader[9].ToString();
                     model.Add(obj);
@@ -113,13 +121,15 @@ namespace OnlineTestManagement.Repository
 
             return model;
         }
+        #endregion
 
-        public QuestionViewModel GetQuestionDetails(int id)
+        #region GetQuestionDetails
+        public QuestionDetailsViewModel GetQuestionDetails(int id)
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
-            QuestionViewModel model = new QuestionViewModel();
+            QuestionDetailsViewModel model = new QuestionDetailsViewModel();
             string queryString =
-        "select * from OnlineTestManagement.Question where id=" + id + "; ";
+        "select OnlineTestManagement.Question.Id, OnlineTestManagement.Question.Question,OnlineTestManagement.Question.Option1,OnlineTestManagement.Question.Option2,OnlineTestManagement.Question.Option3,OnlineTestManagement.Question.Option4,OnlineTestManagement.Question.CorrectAnswer,OnlineTestManagement.Question.CreatedOn,OnlineTestManagement.Question.ModifiedOn,OnlineTestManagement.Question.CreatedBy, OnlineTestManagement.Level.Value as Level,OnlineTestManagement.Subject.Value as Subject  from ((OnlineTestManagement.Question INNER JOIN Level ON OnlineTestManagement.Question.LevelId = OnlineTestManagement.Level.Id)INNER JOIN Subject ON OnlineTestManagement.Question.SubjectId = OnlineTestManagement.Subject.Id) where OnlineTestManagement.Question.Id=" + id + " ";
 
             using (MySqlConnection connection =
                        new MySqlConnection(connectionString))
@@ -143,8 +153,8 @@ namespace OnlineTestManagement.Repository
                     model.CreatedOn = Convert.ToDateTime(reader[7]);
                     model.ModifiedOn = Convert.ToDateTime(reader[8]);
                     model.CreatedBy = reader[9].ToString();
-                    model.LevelId = (int)reader[10];
-                    model.SubjectId = (int)reader[11];
+                    model.Level = reader[10].ToString();
+                    model.Subject = reader[11].ToString();
 
                 }
 
@@ -154,7 +164,9 @@ namespace OnlineTestManagement.Repository
 
             return model;
         }
+        #endregion
 
+        #region GetQuestionForEdit
         public QuestionViewModel GetQuestionForEdit(int id)
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
@@ -195,5 +207,6 @@ namespace OnlineTestManagement.Repository
 
             return model;
         }
+        #endregion
     }
 }

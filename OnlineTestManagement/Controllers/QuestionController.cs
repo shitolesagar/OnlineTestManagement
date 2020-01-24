@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnlineTestManagement.Abstraction.Repository;
 using OnlineTestManagement.Abstraction.Services;
 using OnlineTestManagement.Entities.ViewModels;
 
@@ -12,10 +14,16 @@ namespace OnlineTestManagement.Controllers
     {
         #region Services
         private readonly IQuestionService _questionService;
+        private readonly IQuestionRepository _questionRepository;
+        private readonly ILevelRepository _levelRepository;
+        private readonly ISubjectRepository _subjectRepository;
 
-        public QuestionController(IQuestionService questionService)
+        public QuestionController(IQuestionService questionService, IQuestionRepository questionRepository, ILevelRepository levelRepository, ISubjectRepository subjectRepository)
         {
             _questionService = questionService;
+            _questionRepository = questionRepository;
+            _levelRepository = levelRepository;
+            _subjectRepository = subjectRepository;
         }
         #endregion
 
@@ -31,6 +39,14 @@ namespace OnlineTestManagement.Controllers
         #region Add
         public IActionResult Add()
         {
+            List<LevelViewModel> list = _levelRepository.GetAllLevels();
+            List<IdNameViewModel> levelsList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Value }).ToList();
+            ViewBag.LevelsList = levelsList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
+
+            List<SubjectViewModel> SubList = _subjectRepository.GetAllSubjects();
+            List<IdNameViewModel> SubjectsList = SubList.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Value }).ToList();
+            ViewBag.SubjectsList = SubjectsList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
+
             return View();
         }
         #endregion
@@ -50,6 +66,14 @@ namespace OnlineTestManagement.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            List<LevelViewModel> list = _levelRepository.GetAllLevels();
+            List<IdNameViewModel> levelsList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Value }).ToList();
+            ViewBag.LevelsList = levelsList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
+
+            List<SubjectViewModel> SubList = _subjectRepository.GetAllSubjects();
+            List<IdNameViewModel> SubjectsList = SubList.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Value }).ToList();
+            ViewBag.SubjectsList = SubjectsList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
+
             QuestionViewModel model = _questionService.GetQuestionForEdit(id);
             return View(model);
         }
@@ -69,7 +93,7 @@ namespace OnlineTestManagement.Controllers
         #region Details
         public IActionResult Details(int id)
         {
-            QuestionViewModel model = _questionService.GetQuestionDetails(id);
+            QuestionDetailsViewModel model = _questionService.GetQuestionDetails(id);
             return View(model);
         }
         #endregion

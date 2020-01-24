@@ -21,7 +21,7 @@
     <div class="row my-1" hidden="hidden">
         <div class="col-md-9">
             <div class="form-group">
-                <input type="text" asp-for="Id"  class="form-control" />
+                <input type="text" asp-for="Id" class="form-control" />
             </div>
         </div>
     </div>
@@ -76,6 +76,32 @@
                 <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
                 <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label class="float-label">Select Level</label>
+                <div class="my-custom-select width-100">
+                    <select class="form-control select-dropDown" asp-for="LevelId" value="" asp-items="ViewBag.LevelsList">
+                        <option value="">select</option>
+                    </select>
+                </div>
+                <span asp-validation-for="LevelId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label class="float-label">Select Subject</label>
+                <div class="my-custom-select width-100">
+                    <select class="form-control select-dropDown" asp-for="SubjectId" value="" asp-items="ViewBag.SubjectsList">
+                        <option value="">select</option>
+                    </select>
+                </div>
+                <span asp-validation-for="SubjectId" class="text-danger"></span>
             </div>
         </div>
     </div>

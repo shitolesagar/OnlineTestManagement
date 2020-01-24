@@ -1,0 +1,51 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.TestDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Test Name : </label>
+    <p class=""> @(Model.Name)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Created By :</label>
+    <p class=""> @(Model.CreatedBy)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Job Role : </label>
+    <p class=""> @(Model.JobRole)</p>
+</div>
+
+<div class="accordion" id="accordionExample">
+    @{ 
+        int i = 0;
+    }
+    @foreach (var obj in Model.QuestionList)
+    {
+        i++;
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@("collapse" + i)" aria-expanded="true" aria-controls="collapseOne">
+                    @obj.Question
+                </button>
+            </h2>
+        </div>
+        <div id="@("collapse" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <ol>
+                    <li style="color:@(obj.Option1 == obj.CorrectAnswer? "green":"#000000");">@obj.Option1</li>
+                    <li style="color:@(obj.Option2 == obj.CorrectAnswer? "green":"#000000");">@obj.Option2</li>
+                    <li style="color:@(obj.Option3 == obj.CorrectAnswer? "green":"#000000");">@obj.Option3</li>
+                    <li style="color:@(obj.Option4 == obj.CorrectAnswer? "green":"#000000");">@obj.Option4</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<button type="button" class="col-md-4" onclick="location.href='@Url.Action("Index","Test")'">Back To Index Page</button>
+
