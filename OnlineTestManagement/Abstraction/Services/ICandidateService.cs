@@ -15,5 +15,7 @@ namespace OnlineTestManagement.Abstraction.Services
         CandidateDetailsViewModel GetCandidateDetails(int id);
         void SendTest(int id);
         TestDetailsViewModel StartTest(string UniqueId);
+        void SubmitAnswer(int QuestionId, string SelectedAnswer, int CandidateExamId);
+        void SubmitTest(int CandidateExamId);
     }
 }

@@ -9,5 +9,6 @@ namespace OnlineTestManagement.Abstraction.Repository
     public interface ICandidateExamRepository
     {
         int AddExam(CandidateExamModel obj);
+        void SubmitTest(int CandidateExamId);
     }
 }

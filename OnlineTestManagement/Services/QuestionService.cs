@@ -106,6 +106,22 @@ namespace OnlineTestManagement.Services
         public QuestionDetailsViewModel GetQuestionDetails(int id)
         {
             QuestionDetailsViewModel model = _questionRepository.GetQuestionDetails(id);
+            if(model.CorrectAnswer == "a")
+            {
+                model.CorrectAnswer = "Option A";
+            }
+            else if (model.CorrectAnswer == "b")
+            {
+                model.CorrectAnswer = "Option B";
+            }
+            else if (model.CorrectAnswer == "c")
+            {
+                model.CorrectAnswer = "Option C";
+            }
+            else if (model.CorrectAnswer == "d")
+            {
+                model.CorrectAnswer = "Option D";
+            }
             return model;
         }
         #endregion

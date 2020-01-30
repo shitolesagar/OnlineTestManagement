@@ -41,7 +41,7 @@ namespace OnlineTestManagement.Repository
         {
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
             string queryString =
-        "delete from OnlineTestManagement.Question where id=" + id + " ";
+            "update OnlineTestManagement.Question set IsDeleted = true where Id =" + id + " ";
 
             using (MySqlConnection connection =
                        new MySqlConnection(connectionString))
@@ -50,10 +50,10 @@ namespace OnlineTestManagement.Repository
                     new MySqlCommand(queryString, connection);
                 connection.Open();
 
-                MySqlDataReader reader = command.ExecuteReader();
+                command.ExecuteNonQuery();
 
                 // Call Read before accessing data.
-                
+
 
                 // Call Close when done reading.
                 connection.Close();
@@ -93,7 +93,7 @@ namespace OnlineTestManagement.Repository
             string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
             List<QuestionViewModel> model = new List<QuestionViewModel>();
             string queryString =
-        "SELECT * FROM OnlineTestManagement.Question;";
+        "SELECT * FROM OnlineTestManagement.Question where OnlineTestManagement.Question.IsDeleted=false";
 
             using (MySqlConnection connection =
                        new MySqlConnection(connectionString))

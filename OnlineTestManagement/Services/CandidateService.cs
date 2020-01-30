@@ -12,18 +12,22 @@ namespace OnlineTestManagement.Services
     {
         #region Services
         private readonly ICandidateRepository _candidateRepository;
+        private readonly IQuestionRepository _questionRepository;
         private readonly ICandidateUniqueIdRepository _candidateUniqueIdRepository;
         private readonly ICandidateExamRepository _candidateExamRepository;
+        private readonly ICandidateExamQuestionLogRepository _candidateExamQuestionLogRepository;
         private readonly ITestRepository _testRepository;
         private readonly IEmailService _emailService;
 
-        public CandidateService(ICandidateExamRepository candidateExamRepository, ITestRepository testRepository, IEmailService emailService, ICandidateRepository candidateRepository, ICandidateUniqueIdRepository candidateUniqueIdRepository)
+        public CandidateService(ICandidateExamQuestionLogRepository candidateExamQuestionLogRepository, IQuestionRepository questionRepository, ICandidateExamRepository candidateExamRepository, ITestRepository testRepository, IEmailService emailService, ICandidateRepository candidateRepository, ICandidateUniqueIdRepository candidateUniqueIdRepository)
         {
             _candidateRepository = candidateRepository;
             _candidateUniqueIdRepository = candidateUniqueIdRepository;
             _emailService = emailService;
             _testRepository = testRepository;
             _candidateExamRepository = candidateExamRepository;
+            _candidateExamQuestionLogRepository = candidateExamQuestionLogRepository;
+            _questionRepository = questionRepository;
         }
 
         #endregion
@@ -121,6 +125,44 @@ namespace OnlineTestManagement.Services
             model.CandidateExamId = candidateExamId;
             return model;
         }
+        #endregion 
+
+        #region SubmitAnswer
+        public void SubmitAnswer(int QuestionId, string SelectedAnswer, int CandidateExamId)
+        {
+            QuestionViewModel record = _questionRepository.GetQuestionForEdit(QuestionId);
+            CandidateExamQuestionLogModel obj = new CandidateExamQuestionLogModel();
+            obj = _candidateExamQuestionLogRepository.FindByQuestionIdAndCandidateExamId(QuestionId, CandidateExamId);
+            CandidateExamQuestionLogModel model = new CandidateExamQuestionLogModel()
+            {
+                Question = record.Question,
+                SelectedAnswer = SelectedAnswer,
+                CandidateExamId = CandidateExamId,
+                QuestionId = QuestionId
+            };
+            if (SelectedAnswer == record.CorrectAnswer)
+            {
+                model.IsAnswerCorrect = true;
+            }
+            else
+            {
+                model.IsAnswerCorrect = false;
+            }
+            if (obj.Id == 0)
+            {
+                _candidateExamQuestionLogRepository.AddLog(model);
+            }
+            else
+            {
+                _candidateExamQuestionLogRepository.UpdateLog(model);
+            }
+            return;
+        }
         #endregion
+
+        public void SubmitTest(int CandidateExamId)
+        {
+            _candidateExamRepository.SubmitTest(CandidateExamId);
+        }
     }
 }

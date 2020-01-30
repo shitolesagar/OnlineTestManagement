@@ -5,7 +5,7 @@
 
 <h1>Test</h1>
 
-<input type="text" id="CandidateExamId" value="@Model.CandidateExamId" />
+<input type="text" id="CandidateExamId" value="@Model.CandidateExamId" hidden="hidden" />
 <div class="accordion" id="accordionExample">
     @{
         int i = 0;
@@ -23,32 +23,46 @@
             </div>
             <div id="@("collapse" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
-                    <input type="text" id="QuestionId" value="@obj.Id" />
-                    <form>
-                        <fieldset id="@("group" + i)">
-                            <input type="radio" name="answer" id="Option" value=@obj.Option1 />@obj.Option1<br />
-                            <input type="radio" name="answer" id="Option" value=@obj.Option2 />@obj.Option2<br />
-                            <input type="radio" name="answer" id="Option" value=@obj.Option3 />@obj.Option3<br />
-                            <input type="radio" name="answer" id="Option" value=@obj.Option4 />@obj.Option4<br />
-                        </fieldset>
-                    </form>
+                    <input type="text" id="@("QuestionId" + i)" data-questionid="" value="@obj.Id" hidden="hidden" />
+                    <fieldset id="@("group" + i)">
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('a', '@obj.Id')" value=@obj.Option1 />@obj.Option1<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('b', '@obj.Id')" value=@obj.Option2 />@obj.Option2<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('c', '@obj.Id')" value=@obj.Option3 />@obj.Option3<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('d', '@obj.Id')" value=@obj.Option4 />@obj.Option4<br />
+                    </fieldset>
                 </div>
             </div>
         </div>
     }
 </div>
 
+<td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("SubmitTest", "Candidate", new { CandidateExamId = Model.CandidateExamId})"'>Submit Test</button></td>
+
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script>
-        var notificationType = $('input[type=radio][name=Type]:checked').val();
+
         $(document).ready(function () {
 
             console.log($("#CandidateExamId").val());
-            console.log($("#QuestionId").val());
-
         });
+
+        function SubmitAnswer(selectedOption, questionId) {
+            var url = "/Candidate/SubmitAnswer?QuestionId=" + questionId + "&SelectedAnswer=" + selectedOption + "&CandidateExamId=" + $("#CandidateExamId").val();
+            ajaxCall(url)
+            console.log(questionId);
+        }
+
+        function ajaxCall(url) {
+            $(".loader-wrapper").show();
+            $.get(url, function (data) {
+                $(".loader-wrapper").hide();
+                ShowSlackbarSucessMessage("Answer Saved");
+            });
+        }
+
+
     </script>
 }
 

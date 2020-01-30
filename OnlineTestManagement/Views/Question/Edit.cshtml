@@ -28,7 +28,7 @@
     <div class="row my-1">
         <div class="col-md-9">
             <div class="form-group">
-                <label asp-for="Option1" class="control-label float-label mt-2">Option1</label>
+                <label asp-for="Option1" class="control-label float-label mt-2">Option A</label>
                 <input type="text" asp-for="Option1" placeholder="Option1" class="form-control" />
                 <span asp-validation-for="Option1" class="text-danger"></span>
             </div>
@@ -37,7 +37,7 @@
     <div class="row my-1">
         <div class="col-md-9">
             <div class="form-group">
-                <label asp-for="Option2" class="control-label float-label mt-2">Option2</label>
+                <label asp-for="Option2" class="control-label float-label mt-2">Option B</label>
                 <input type="text" asp-for="Option2" placeholder="Option2" class="form-control" />
                 <span asp-validation-for="Option2" class="text-danger"></span>
             </div>
@@ -46,7 +46,7 @@
     <div class="row my-1">
         <div class="col-md-9">
             <div class="form-group">
-                <label asp-for="Option3" class="control-label float-label mt-2">Option3</label>
+                <label asp-for="Option3" class="control-label float-label mt-2">Option C</label>
                 <input type="text" asp-for="Option3" placeholder="Option3" class="form-control" />
                 <span asp-validation-for="Option3" class="text-danger"></span>
             </div>
@@ -55,7 +55,7 @@
     <div class="row my-1">
         <div class="col-md-9">
             <div class="form-group">
-                <label asp-for="Option4" class="control-label float-label mt-2">Option4</label>
+                <label asp-for="Option4" class="control-label float-label mt-2">Option D</label>
                 <input type="text" asp-for="Option4" placeholder="Option4" class="form-control" />
                 <span asp-validation-for="Option4" class="text-danger"></span>
             </div>
@@ -64,8 +64,18 @@
     <div class="row my-1">
         <div class="col-md-9">
             <div class="form-group">
+                @*<label asp-for="CorrectAnswer" class="control-label float-label mt-2">CorrectAnswer</label>
+        <input type="text" asp-for="CorrectAnswer" placeholder="CorrectAnswer" class="form-control" />
+        <span asp-validation-for="CorrectAnswer" class="text-danger"></span>*@
                 <label asp-for="CorrectAnswer" class="control-label float-label mt-2">CorrectAnswer</label>
-                <input type="text" asp-for="CorrectAnswer" placeholder="CorrectAnswer" class="form-control" />
+                <div class="my-custom-select width-100">
+                    <select class="form-control select-dropDown" asp-for="CorrectAnswer" value="">
+                        <option value="a">Option A</option>
+                        <option value="b">Option B</option>
+                        <option value="c">Option C</option>
+                        <option value="d">Option D</option>
+                    </select>
+                </div>
                 <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
             </div>
         </div>

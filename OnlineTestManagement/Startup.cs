@@ -52,6 +52,7 @@ namespace OnlineTestManagement
             services.AddScoped<ISmtpMailRepository, SmtpMailRepository>();
             services.AddScoped<ICandidateUniqueIdRepository, CandidateUniqueIdRepository>();
             services.AddScoped<ICandidateExamRepository, CandidateExamRepository>();
+            services.AddScoped<ICandidateExamQuestionLogRepository, CandidateExamQuestionLogRepository>();
             #endregion
 
             services.Configure<CookiePolicyOptions>(options =>

@@ -249,7 +249,7 @@ namespace OnlineTestManagement.Repository
             string queryString =
         "select OnlineTestManagement.Test.Id, OnlineTestManagement.Test.Name,OnlineTestManagement.Test.CreatedBy, OnlineTestManagement.JobRole.Value as JobRole from (OnlineTestManagement.Test INNER JOIN JobRole ON OnlineTestManagement.Test.JobRoleId = OnlineTestManagement.JobRole.Id) where OnlineTestManagement.Test.Id=" + id + " ";
 
-            string queList = "select OnlineTestManagement.Question.Question as Question,OnlineTestManagement.Question.CreatedBy as CreatedBy,OnlineTestManagement.Question.CreatedBy as CreatedBy,OnlineTestManagement.Question.Option1 as Option1,OnlineTestManagement.Question.Option2 as Option2,OnlineTestManagement.Question.Option3 as Option3,OnlineTestManagement.Question.Option4 as Option4  from (OnlineTestManagement.Question INNER JOIN TestQuestion ON OnlineTestManagement.Question.Id = OnlineTestManagement.TestQuestion.QUestionId) where OnlineTestManagement.TestQuestion.TestId=" + id + " ";
+            string queList = "select OnlineTestManagement.Question.Id as Id,OnlineTestManagement.Question.Question as Question,OnlineTestManagement.Question.CreatedBy as CreatedBy,OnlineTestManagement.Question.CreatedBy as CreatedBy,OnlineTestManagement.Question.Option1 as Option1,OnlineTestManagement.Question.Option2 as Option2,OnlineTestManagement.Question.Option3 as Option3,OnlineTestManagement.Question.Option4 as Option4  from (OnlineTestManagement.Question INNER JOIN TestQuestion ON OnlineTestManagement.Question.Id = OnlineTestManagement.TestQuestion.QUestionId) where OnlineTestManagement.TestQuestion.TestId=" + id + " ";
 
             using (MySqlConnection connection =
                        new MySqlConnection(connectionString))
@@ -285,14 +285,15 @@ namespace OnlineTestManagement.Repository
                 while (reader.Read())
                 {
                     QuestionViewModel obj = new QuestionViewModel();
-                    
-                    obj.Question = reader[0].ToString();
-                    obj.CreatedBy = reader[1].ToString();
-                    obj.CorrectAnswer = reader[2].ToString();
-                    obj.Option1 = reader[3].ToString();
-                    obj.Option2 = reader[4].ToString();
-                    obj.Option3 = reader[5].ToString();
-                    obj.Option4 = reader[6].ToString();
+
+                    obj.Id =(int) reader[0];
+                    obj.Question = reader[1].ToString();
+                    obj.CreatedBy = reader[2].ToString();
+                    obj.CorrectAnswer = reader[3].ToString();
+                    obj.Option1 = reader[4].ToString();
+                    obj.Option2 = reader[5].ToString();
+                    obj.Option3 = reader[6].ToString();
+                    obj.Option4 = reader[7].ToString();
                     model.QuestionList.Add(obj);
                 }
 

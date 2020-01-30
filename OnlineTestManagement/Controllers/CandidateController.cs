@@ -114,5 +114,21 @@ namespace OnlineTestManagement.Controllers
             return View(model);
         }
         #endregion
+
+        #region SubmitAnswer
+        public void SubmitAnswer(int QuestionId, string SelectedAnswer, int CandidateExamId)
+        {
+            _candidateService.SubmitAnswer(QuestionId, SelectedAnswer, CandidateExamId);
+        }
+
+        #endregion
+
+        #region Submit Test
+        public IActionResult SubmitTest(int CandidateExamId)
+        {
+            _candidateService.SubmitTest(CandidateExamId);
+            return RedirectToAction("Index", "Candidate");
+        }
+        #endregion
     }
 }
