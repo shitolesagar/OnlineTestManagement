@@ -1,0 +1,34 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.CandidateExamWrapperModel
+@{
+    ViewData["Title"] = "Index";
+}
+<button type="button" class="col-md-2" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
+<h1>Index</h1>
+
+<div id="indexPartialContent">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Candidate Name</th>
+                <th>Test Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.CandidateExamList)
+            {
+                <tr>
+                    <td>@obj.CandidateName</td>
+                    <td>@obj.TestName</td>
+                    <td>@obj.Score</td>
+                    <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Result", new { id = obj.Id})"'>Details</button></td>
+                    @*<td class="text-center">
+                            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/test/edit/@test.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
+                            <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@test.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+                        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

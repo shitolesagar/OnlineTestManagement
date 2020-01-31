@@ -11,5 +11,6 @@ namespace OnlineTestManagement.Abstraction.Repository
         void AddLog(CandidateExamQuestionLogModel model);
         void UpdateLog(CandidateExamQuestionLogModel model);
         CandidateExamQuestionLogModel FindByQuestionIdAndCandidateExamId(int QuestionId, int CandidateExamId);
+        List<CandidateExamQuestionLogModel> FindByCandidateExamId(int CandidateExamId);
     }
 }

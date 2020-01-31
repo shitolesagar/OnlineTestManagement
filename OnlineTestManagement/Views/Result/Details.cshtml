@@ -1,0 +1,45 @@
+﻿@model OnlineTestManagement.Entities.ViewModels.CandidateExamModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Candidate Name : </label>
+    <p class=""> @(Model.CandidateName)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Test Name :</label>
+    <p class=""> @(Model.TestName)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Started Time: </label>
+    <p class=""> @(Model.StartedTime)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Submitted Time: </label>
+    <p class=""> @(Model.SubmittedTime)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Total Number Of Questions: </label>
+    <p class=""> @(Model.TotalNumberOfQuestions)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Attempted Questions: </label>
+    <p class=""> @(Model.AttemptedQuestions)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Correct Answers: </label>
+    <p class=""> @(Model.CorrectAnswers)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Wrong Answers: </label>
+    <p class=""> @(Model.WrongAnswers)</p>
+</div>
+<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Score: </label>
+    <p class=""> @(Model.Score)</p>
+</div>
+
+<button type="button" class="col-md-4" onclick="location.href='@Url.Action("Index","Result")'">Back To Index Page</button>
+

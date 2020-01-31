@@ -10,5 +10,7 @@ namespace OnlineTestManagement.Abstraction.Repository
     {
         int AddExam(CandidateExamModel obj);
         void SubmitTest(int CandidateExamId);
+        CandidateExamWrapperModel GetAllSubmittedTests();
+        CandidateExamModel GetExamDetails(int id);
     }
 }

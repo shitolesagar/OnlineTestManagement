@@ -92,5 +92,43 @@ namespace OnlineTestManagement.Repository
             return;
         }
         #endregion
+
+        #region FindByCandidateExamId
+        public List<CandidateExamQuestionLogModel> FindByCandidateExamId(int CandidateExamId)
+        {
+            string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
+            List<CandidateExamQuestionLogModel> model = new List<CandidateExamQuestionLogModel>();
+            string queryString =
+        "select * from OnlineTestManagement.CandidateExamQuestionsLog where CandidateExamId=" + CandidateExamId + "; ";
+
+            using (MySqlConnection connection =
+                       new MySqlConnection(connectionString))
+            {
+                MySqlCommand command =
+                    new MySqlCommand(queryString, connection);
+                connection.Open();
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    CandidateExamQuestionLogModel obj = new CandidateExamQuestionLogModel();
+                    obj.Id = (int)reader[0];
+                    obj.Question = reader[1].ToString();
+                    obj.SelectedAnswer = reader[2].ToString();
+                    obj.IsAnswerCorrect = (Boolean)reader[3];
+                    obj.CandidateExamId = (int)reader[4];
+                    obj.QuestionId = (int)reader[5];
+                    model.Add(obj);
+                }
+
+                // Call Close when done reading.
+                connection.Close();
+            }
+
+            return model;
+        }
+        #endregion
     }
 }

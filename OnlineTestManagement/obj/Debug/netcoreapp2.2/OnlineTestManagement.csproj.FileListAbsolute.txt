@@ -45,3 +45,5 @@ E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreap
 E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\Details.g.cshtml.cs
 E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\_deletePopup.g.cshtml.cs
 E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Candidate\StartTest.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Result\Index.g.cshtml.cs
+E:\@Saggy\Projects\OnlineTestManagement\OnlineTestManagement\obj\Debug\netcoreapp2.2\Razor\Views\Result\Details.g.cshtml.cs
