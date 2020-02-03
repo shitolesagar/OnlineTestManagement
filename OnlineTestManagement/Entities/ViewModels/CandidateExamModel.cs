@@ -25,5 +25,7 @@ namespace OnlineTestManagement.Entities.ViewModels
         public int AttemptedQuestions { get; set; }
         public int CorrectAnswers { get; set; }
         public int WrongAnswers { get; set; }
+
+        public List<CandidateExamQuestionLogModel> list { get; set; }
     }
 }

@@ -41,5 +41,28 @@
     <p class=""> @(Model.Score)</p>
 </div>
 
+
+<div id="indexPartialContent">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Selected Answer</th>
+                <th>Is Answer Correct</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.list)
+            {
+                <tr>
+                    <td>@obj.Question</td>
+                    <td>@obj.SelectedAnswer</td>
+                    <td>@obj.IsAnswerCorrect</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
 <button type="button" class="col-md-4" onclick="location.href='@Url.Action("Index","Result")'">Back To Index Page</button>
 

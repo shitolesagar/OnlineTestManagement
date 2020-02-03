@@ -30,10 +30,11 @@ namespace OnlineTestManagement.Services
             model.CandidateName = candidate.Name;
             TestDetailsViewModel test = _testRepository.GetTestDetails(model.TestId);
             model.TestName = test.Name;
-            List<CandidateExamQuestionLogModel> list = _candidateExamQuestionLogRepository.FindByCandidateExamId(id);
+            model.list = new List<CandidateExamQuestionLogModel>();
+            model.list = _candidateExamQuestionLogRepository.FindByCandidateExamId(id);
             int CorrectAnswers = 0;
             int TotalQuestions = test.QuestionList.Count();
-            foreach (var obj in list)
+            foreach (var obj in model.list)
             {
                 if (obj.IsAnswerCorrect == true)
                 {
@@ -42,9 +43,29 @@ namespace OnlineTestManagement.Services
             }
             model.Score = CorrectAnswers + "/" + TotalQuestions;
             model.TotalNumberOfQuestions = TotalQuestions;
-            model.AttemptedQuestions = list.Count();
+            model.AttemptedQuestions = model.list.Count();
             model.CorrectAnswers = CorrectAnswers;
-            model.WrongAnswers = list.Count() - CorrectAnswers;
+            model.WrongAnswers = model.list.Count() - CorrectAnswers;
+
+            foreach (var que in test.QuestionList)
+            {
+                bool IsPresent = false;
+                foreach (var item in model.list)
+                {
+                    if(que.Id == item.QuestionId)
+                    {
+                        IsPresent = true;
+                    }
+                }
+                if(IsPresent == false)
+                {
+                    CandidateExamQuestionLogModel rec = new CandidateExamQuestionLogModel();
+                    rec.Question = que.Question;
+                    rec.SelectedAnswer = "NA";
+                    rec.IsAnswerCorrect = false;
+                    model.list.Add(rec);
+                }
+            }
             return model;
         }
 
