@@ -5,13 +5,14 @@
 
 @section Styles{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link href="~/css/site.css" rel="stylesheet" />
 }
-<h1>Question</h1>
+<h2 style="color:red;">Add Question</h2>
 <div class="row">
-    <div class="col-md-6 detail-container">
+    <div class="col-md-12 detail-container">
         <form asp-controller="Question" id="form" asp-action="add" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
             <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Question" class="control-label float-label mt-2">Question</label>
                         <input type="text" asp-for="Question" placeholder="Question" class="form-control" />
@@ -20,16 +21,15 @@
                 </div>
             </div>
             <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Option1" class="control-label float-label mt-2">Option A</label>
                         <input type="text" asp-for="Option1" placeholder="Option1" class="form-control" />
                         <span asp-validation-for="Option1" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row my-1">
-                <div class="col-md-9">
+
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Option2" class="control-label float-label mt-2">Option B</label>
                         <input type="text" asp-for="Option2" placeholder="Option2" class="form-control" />
@@ -38,16 +38,14 @@
                 </div>
             </div>
             <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Option3" class="control-label float-label mt-2">Option C</label>
                         <input type="text" asp-for="Option3" placeholder="Option3" class="form-control" />
                         <span asp-validation-for="Option3" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Option4" class="control-label float-label mt-2">Option D</label>
                         <input type="text" asp-for="Option4" placeholder="Option4" class="form-control" />
@@ -56,11 +54,11 @@
                 </div>
             </div>
             <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="form-group">
                         @*<label asp-for="CorrectAnswer" class="control-label float-label mt-2">CorrectAnswer</label>
-        <input type="text" asp-for="CorrectAnswer" placeholder="CorrectAnswer" class="form-control" />
-        <span asp-validation-for="CorrectAnswer" class="text-danger"></span>*@
+                            <input type="text" asp-for="CorrectAnswer" placeholder="CorrectAnswer" class="form-control" />
+                            <span asp-validation-for="CorrectAnswer" class="text-danger"></span>*@
                         <label asp-for="CorrectAnswer" class="control-label float-label mt-2">CorrectAnswer</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control select-dropDown" asp-for="CorrectAnswer" value="">
@@ -73,20 +71,18 @@
                         <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row my-1">
-                <div class="col-md-9">
+                @*<div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
                         <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
                         <span asp-validation-for="CreatedBy" class="text-danger"></span>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label class="float-label">Select Level</label>
+                        <label class="control-label">Select Level</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control select-dropDown" asp-for="LevelId" value="" asp-items="ViewBag.LevelsList">
                                 <option value="">select</option>
@@ -95,11 +91,9 @@
                         <span asp-validation-for="LevelId" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row my-1">
-                <div class="col-md-9">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label class="float-label">Select Subject</label>
+                        <label class="control-label">Select Subject</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control select-dropDown" asp-for="SubjectId" value="" asp-items="ViewBag.SubjectsList">
                                 <option value="">select</option>
@@ -110,8 +104,8 @@
                 </div>
             </div>
             <div class="detailBtn-group">
-                <button id="btnSubmit" class="btn btn-primary  mr-2">Add</button>
-                <a asp-controller="Question" asp-action="index" class="btn btn-secondary">Cancel</a>
+                <button id="btnSubmit" class="btn btn-primary  mr-2" style="background-color:red;">Add</button>
+                <a asp-controller="Question" asp-action="index" class="btn btn-secondary" style="color:white; background-color:grey;">Cancel</a>
             </div>
         </form>
     </div>
@@ -119,6 +113,7 @@
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <link href="~/css/site.css" rel="stylesheet" />
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script>

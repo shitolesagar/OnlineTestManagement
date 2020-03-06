@@ -1,6 +1,7 @@
 ﻿using OnlineTestManagement.Abstraction.Repository;
 using OnlineTestManagement.Abstraction.Services;
 using OnlineTestManagement.Entities.ViewModels;
+using OnlineTestManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,14 @@ namespace OnlineTestManagement.Services
         public TestDetailsViewModel GetTestDetails(int id)
         {
             TestDetailsViewModel model = _testRepository.GetTestDetails(id);
+            return model;
+        }
+        #endregion
+
+        #region GetAllQuestionsForSubject
+        public TestQuestionListModel GetAllQuestionsForSubject(int SubId)
+        {
+            TestQuestionListModel model = _testRepository.GetAllQuestionsForSubject(SubId);
             return model;
         }
         #endregion

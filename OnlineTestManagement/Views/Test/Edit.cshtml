@@ -8,7 +8,7 @@
     <link href="~/css/summernote.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/css/bootstrap-select.min.css">
 }
-<h1>Question</h1>
+<h2 style="color:red;">Edit Test</h2>
 <div class="row">
     <div class="col-md-6 detail-container">
         <form asp-controller="Test" id="form" asp-action="edit" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
@@ -21,15 +21,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row my-1">
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
-                        <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
-                        <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            @*<div class="row my-1">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
+                            <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
+                            <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
             <div class="row my-1" hidden="hidden">
                 <div class="col-md-9">
                     <div class="form-group">
@@ -40,7 +40,7 @@
             <div class="row my-1">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label class="float-label">Select Job Role</label>
+                        <label class="control-label">Select Job Role</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control select-dropDown" asp-for="JobRoleId" value="" asp-items="ViewBag.JobRolesList">
                                 <option value="">select</option>
@@ -53,7 +53,7 @@
             <div class="row my-1">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label class="float-label">Select Questions</label>
+                        <label class="control-label">Select Questions</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control selectpicker" asp-for="SelectedQuestionIds" asp-items="ViewBag.QuestionsList" title="select"></select>
                         </div>
@@ -62,8 +62,8 @@
                 </div>
             </div>
             <div class="detailBtn-group">
-                <button id="btnSubmit" class="btn btn-primary  mr-2">Update</button>
-                <a asp-controller="Test" asp-action="index" class="btn btn-secondary">Cancel</a>
+                <button id="btnSubmit" class="btn btn-primary  mr-2" style="background-color:red">Update</button>
+                <a asp-controller="Test" asp-action="index" class="btn btn-secondary" style="color:white; background-color:grey">Cancel</a>
             </div>
         </form>
     </div>
@@ -87,4 +87,3 @@
     </script>
 
 }
-

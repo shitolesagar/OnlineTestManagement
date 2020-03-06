@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineTestManagement.Abstraction.Repository;
@@ -107,6 +108,7 @@ namespace OnlineTestManagement.Controllers
         #endregion
 
         #region Start Test
+        [AllowAnonymous]
         public IActionResult StartTest(string UniqueId)
         {
             TestDetailsViewModel model = new TestDetailsViewModel();
@@ -116,6 +118,8 @@ namespace OnlineTestManagement.Controllers
         #endregion
 
         #region SubmitAnswer
+        [AllowAnonymous]
+
         public void SubmitAnswer(int QuestionId, string SelectedAnswer, int CandidateExamId)
         {
             _candidateService.SubmitAnswer(QuestionId, SelectedAnswer, CandidateExamId);
@@ -124,10 +128,12 @@ namespace OnlineTestManagement.Controllers
         #endregion
 
         #region Submit Test
+        [AllowAnonymous]
         public IActionResult SubmitTest(int CandidateExamId)
         {
             _candidateService.SubmitTest(CandidateExamId);
-            return RedirectToAction("Index", "Candidate");
+            //return RedirectToAction("Index", "Candidate");
+            return View();
         }
         #endregion
     }

@@ -8,7 +8,7 @@
     <link href="~/css/summernote.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/css/bootstrap-select.min.css">
 }
-<h1>Question</h1>
+<h2 style="color:red;">Edit Candidate</h2>
 <div class="row">
     <div class="col-md-6 detail-container">
         <form asp-controller="Candidate" id="form" asp-action="edit" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
@@ -67,7 +67,7 @@
             <div class="row my-1">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label class="float-label">Select Test</label>
+                        <label class="control-label">Select Test</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control select-dropDown" asp-for="TestId" value="" asp-items="ViewBag.TestsList">
                                 <option value="">select</option>
@@ -78,8 +78,8 @@
                 </div>
             </div>
             <div class="detailBtn-group">
-                <button id="btnSubmit" class="btn btn-primary  mr-2">Update</button>
-                <a asp-controller="Candidate" asp-action="index" class="btn btn-secondary">Cancel</a>
+                <button id="btnSubmit" class="btn btn-primary  mr-2" style="background-color:red;">Update</button>
+                <a asp-controller="Candidate" asp-action="index" class="btn btn-secondary" style="color:white; background-color:grey;">Cancel</a>
             </div>
         </form>
     </div>

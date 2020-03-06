@@ -2,10 +2,12 @@
 @{
     ViewData["Title"] = "Index";
 }
-<button type="button" class="col-md-2" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
+
+<script src="~/js/site.js"></script>
+<link href="~/css/site.css" rel="stylesheet" />
 <div class="row">
-    <h1 class="col-md-4">Index</h1>
-    <button type="button" class="col-md-4" onclick="location.href='@Url.Action("Add","Candidate")'">Add New Candidate</button>
+    <h2 class="col-md-6" style="color:red;">Candidate</h2>
+    <i title="Add New Candidate" class="fa fa-plus-circle col-md-6" onclick="location.href='@Url.Action("Add","Candidate")'" aria-hidden="true" style="font-size:40px; color:red; text-align:right; cursor:pointer;"></i>
 </div>
 
 <div id="indexPartialContent">
@@ -14,27 +16,61 @@
             <tr>
                 <th width="20%">Name</th>
                 <th width="20%">Applied For</th>
+                <th width="20%">Action</th>
                 <th width="20%" class="text-center">Manage</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var candidate in Model.CandidateList)
             {
-            <tr>
+            <tr style="background : #ececec; cursor:pointer;" onclick="redirectToEdit('/candidate/details/@candidate.Id')">
                 <td>@candidate.Name</td>
                 <td>@candidate.AppliedFor</td>
-                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Edit", "Candidate", new { id = candidate.Id})"'>Edit Candidate</button></td>
-                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Candidate", new { id = candidate.Id})"'>Details</button></td>
-                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("SendTest", "Candidate", new { id = candidate.Id})"'>Send Test</button></td>
+                <td><button type="button" id="SendTest" onclick="redirectToEdit('/candidate/SendTest/@candidate.Id')">Send Test</button></td>
+                @*<td><button type="button" id="SendTest" onclick="filters(@candidate.Id)">Send Test</button></td>*@
                 @*<td class="text-center">
-            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/test/edit/@test.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
-            <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@test.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+            <span title="Edit" onclick='window.location.href = "@Url.Action("Edit", "Candidate", new { id = candidate.Id})"'><i class="fa fa-pencil f-16" aria-hidden="true" onclick="event.stopPropagation();"></i></span>
+            <span title="Remove" onclick='window.location.href = "@Url.Action("Delete", "Candidate", new { id = candidate.Id})"'><i class="fa fa-trash ml-3 f-16" aria-hidden="true" onclick="event.stopPropagation();"></i></span>
         </td>*@
+                <td class="text-center">
+                    <span title="Edit" onclick="redirectToEdit('/candidate/edit/@candidate.Id')"><i class="fa fa-pencil f-16" aria-hidden="true"></i></span>
+                    @*<span title="Remove" onclick="redirectToEdit('/candidate/delete/@candidate.Id')"><i class="fa fa-trash ml-3 f-16" aria-hidden="true"></i></span>*@
+                </td>
             </tr>
             }
         </tbody>
     </table>
 </div>
+<button type="button" class="col-md-2" style="color:white; background-color:gray;" onclick="location.href='@Url.Action("Index","Home")'">Go To HomePage</button>
 
 <partial name="_deletePopup" />
+@section Scripts {
+    <script src="~/js/site.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            console.log("ready");
+        })
+
+        function filters(id) {
+            $("#SendTest").css('color', 'red');
+            var url = "/candidate/SendTest?";
+            console.log(id);
+            $(".loader-wrapper").show();
+            $.get(url,
+                {
+                    id: id,
+                },
+                function (data) {
+                    $(".loader-wrapper").hide();
+                    console.log(data);
+                    createQuestionTr(data.questionList);
+                    //$("#indexPartialContent").replaceWith(data);
+                });
+        }
+
+
+
+    </script>
+}
 

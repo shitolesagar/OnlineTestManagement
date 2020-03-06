@@ -2,33 +2,32 @@
 @{
     ViewData["Title"] = "Index";
 }
-<button type="button" class="col-md-2" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
-<h1>Index</h1>
+<script src="~/js/site.js"></script>
+<link href="~/css/site.css" rel="stylesheet" />
+<h2 style="color:red;">Result</h2>
 
 <div id="indexPartialContent">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Candidate Name</th>
-                <th>Test Name</th>
-                <th>Score</th>
+                <th width="20%">Candidate Name</th>
+                <th width="20%">Test Name</th>
+                <th width="20%">Score</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model.CandidateExamList)
             {
-                <tr>
+                <tr style="background : #ececec; cursor:pointer;" onclick='window.location.href = "@Url.Action("Details", "Result", new { id = obj.Id})"'>
                     <td>@obj.CandidateName</td>
                     <td>@obj.TestName</td>
                     <td>@obj.Score</td>
-                    <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Result", new { id = obj.Id})"'>Details</button></td>
-                    @*<td class="text-center">
-                            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/test/edit/@test.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
-                            <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@test.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
-                        </td>*@
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<button type="button" class="col-md-2" style="color:white; background-color:gray;" onclick="location.href='@Url.Action("Index","Home")'">Go To HomePage</button>
+<script src="~/js/site.js"></script>
 

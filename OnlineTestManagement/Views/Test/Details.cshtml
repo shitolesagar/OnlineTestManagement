@@ -2,19 +2,19 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
+<link href="~/css/site.css" rel="stylesheet" />
+<h2 style="color:red; margin-bottom:30px;">Test Details</h2>
 
 <div class="form-group mt-2 float-container position-relative">
-    <label class="control-label float-label">Test Name : </label>
+    <label class="control-label float-label">Test Name</label>
     <p class=""> @(Model.Name)</p>
 </div>
-<div class="form-group mt-2 float-container position-relative">
-    <label class="control-label float-label">Created By :</label>
+@*<div class="form-group mt-2 float-container position-relative">
+    <label class="control-label float-label">Created By</label>
     <p class=""> @(Model.CreatedBy)</p>
-</div>
+</div>*@
 <div class="form-group mt-2 float-container position-relative">
-    <label class="control-label float-label">Job Role : </label>
+    <label class="control-label float-label">Job Role</label>
     <p class=""> @(Model.JobRole)</p>
 </div>
 
@@ -28,12 +28,12 @@
     <div class="card">
         <div class="card-header" id="headingOne">
             <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@("collapse" + i)" aria-expanded="true" aria-controls="collapseOne">
-                    @obj.Question
+                <button class="btn btn-link" style="text-align:left; color:black;" type="button" data-toggle="collapse" data-target="#@("collapse" + i)" aria-expanded="true" aria-controls="collapseOne">
+                    @i. @obj.Question
                 </button>
             </h2>
         </div>
-        <div id="@("collapse" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div id="@("collapse" + i)" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 <ol>
                     <li style="color:@(obj.Option1 == obj.CorrectAnswer? "green":"#000000");">@obj.Option1</li>
@@ -47,5 +47,7 @@
     }
 </div>
 
-<button type="button" class="col-md-4" onclick="location.href='@Url.Action("Index","Test")'">Back To Index Page</button>
+<button type="button" class="col-md-4" onclick="location.href='@Url.Action("Index","Test")'" style="color:white; background-color:grey; margin-top:30px;">Back To Index Page</button>
 
+
+<link href="~/css/site.css" rel="stylesheet" />

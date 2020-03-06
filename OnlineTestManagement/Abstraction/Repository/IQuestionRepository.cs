@@ -1,4 +1,5 @@
 ﻿using OnlineTestManagement.Entities.ViewModels;
+using OnlineTestManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace OnlineTestManagement.Abstraction.Repository
         void EditQuestion(int id, QuestionViewModel model);
         QuestionDetailsViewModel GetQuestionDetails(int id);
         void DeleteQuestion(int id);
-        
+        TestQuestionListModel GetAllQuestionsForSubject(int SubId);
     }
 }

@@ -1,35 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link href="~/css/site.css" rel="stylesheet" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="margin-top:100px;">
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Index","Question")'"><i class="icon fa fa-question" style="margin-bottom:20px;"></i><br />Question</button>
+    <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='@Url.Action("Index","Test")'" style="margin-left:70px;"><i class="icon fa fa-newspaper-o" style="margin-bottom:20px;"></i><br />Test</button>
+    <button type="button" class="btn btn-success btn-lg" onclick="location.href='@Url.Action("Index","Candidate")'" style="margin-left:70px;"><i class="icon fa fa-users" style="margin-bottom:20px;"></i><br/>Candidate</button>
+    <button type="button" class="btn btn-danger btn-lg" onclick="location.href='@Url.Action("Index","Result")'" style="margin-left:70px;"><i class="icon fa fa-graduation-cap" style="margin-bottom:20px;"></i><br/>Result</button>
 </div>
-<div class="setting-wrapper">
-    <a asp-controller="Question" asp-action="Index" class="btn-lg">
-        <div class="p-5 setting-card">
-            Questions
-        </div>
-    </a>
-    <a asp-controller="Test" asp-action="Index" class="btn-lg">
-        <div class="p-5 setting-card">
-            Test
-        </div>
-    </a>
-    <a asp-controller="Candidate" asp-action="Index" class="btn-lg">
-        <div class="p-5 setting-card">
-            Candidate
-        </div>
-    </a>
-    <a asp-controller="Result" asp-action="Index" class="btn-lg">
-        <div class="p-5 setting-card">
-            Result
-        </div>
-    </a>
-    @*<a asp-controller="Rate" asp-action="Index" class="btn-lg">
-            <div class="p-5 setting-card">
-                Rate
-            </div>
-        </a>*@
-</div>
+
+
+
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+

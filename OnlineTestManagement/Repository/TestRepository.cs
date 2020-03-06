@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using OnlineTestManagement.Abstraction.Repository;
 using OnlineTestManagement.Entities.ViewModels;
+using OnlineTestManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -295,6 +296,42 @@ namespace OnlineTestManagement.Repository
                     obj.Option3 = reader[6].ToString();
                     obj.Option4 = reader[7].ToString();
                     model.QuestionList.Add(obj);
+                }
+
+                // Call Close when done reading.
+                connection.Close();
+            }
+
+            return model;
+        }
+        #endregion
+
+        #region GetAllQuestionsForSubject
+        public TestQuestionListModel GetAllQuestionsForSubject(int SubId)
+        {
+            string connectionString = "server=localhost;uid=root;password=Reset1234;database=OnlineTestManagement;";
+            TestQuestionListModel model = new TestQuestionListModel();
+            model.QuestionList = new List<Question>();
+            string queryString =
+        "SELECT Id, Question FROM OnlineTestManagement.Test where SubjectId=" + SubId + ";";
+
+            using (MySqlConnection connection =
+                       new MySqlConnection(connectionString))
+            {
+                MySqlCommand command =
+                    new MySqlCommand(queryString, connection);
+                connection.Open();
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    Question obj = new Question();
+                    obj.Id = (int)reader[0];
+                    obj.Text = reader[1].ToString();
+                    model.QuestionList.Add(obj);
+
                 }
 
                 // Call Close when done reading.

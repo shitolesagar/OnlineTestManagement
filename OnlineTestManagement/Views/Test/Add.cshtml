@@ -8,9 +8,9 @@
     <link href="~/css/summernote.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/css/bootstrap-select.min.css">
 }
-<h1>Question</h1>
+<h2 style="color:red;">Add Test</h2>
 <div class="row">
-    <div class="col-md-6 detail-container">
+    <div class="col-md-12 detail-container">
         <form asp-controller="Test" id="form" asp-action="add" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
             <div class="row my-1">
                 <div class="col-md-9">
@@ -21,19 +21,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row my-1">
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
-                        <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
-                        <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            @*<div class="row my-1">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label asp-for="CreatedBy" class="control-label float-label mt-2">CreatedBy</label>
+                            <input type="text" asp-for="CreatedBy" placeholder="CreatedBy" class="form-control" />
+                            <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
             <div class="row my-1">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label class="float-label">Select Job Role</label>
+                        <label class="control-label">Select Job Role</label>
                         <div class="my-custom-select width-100">
                             <select class="form-control select-dropDown" asp-for="JobRoleId" value="" asp-items="ViewBag.JobRolesList">
                                 <option value="">select</option>
@@ -46,17 +46,33 @@
             <div class="row my-1">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label class="float-label">Select Questions</label>
+                        <label class="control-label">Select Subject</label>
                         <div class="my-custom-select width-100">
-                            <select class="form-control selectpicker" asp-for="SelectedQuestionIds" asp-items="ViewBag.QuestionsList" title="select"></select>
+                            <select class="form-control select-dropDown" onchange="filters(this)" value="" asp-items="ViewBag.SubjectsList">
+                                <option value="">select</option>
+                            </select>
                         </div>
-                        <span asp-validation-for="SelectedQuestionIds" class="text-danger"></span>
                     </div>
                 </div>
             </div>
+            <div class="row my-1">
+                <div class="col-md-9">
+                    @*<div class="form-group">
+                            <label class="control-label">Select Questions</label>
+                            <div class="my-custom-select width-100">
+                                <select class="form-control selectpicker col-lg-12" asp-for="SelectedQuestionIds" asp-items="ViewBag.QuestionsList" title="select"></select>
+                            </div>
+                            <span asp-validation-for="SelectedQuestionIds" class="text-danger"></span>
+                        </div>*@
+                    <label class="control-label">Select Questions</label>
+                    <table id="tblQuestion">
+                        
+                    </table>
+                </div>
+            </div>
             <div class="detailBtn-group">
-                <button id="btnSubmit" class="btn btn-primary  mr-2">Add</button>
-                <a asp-controller="Test" asp-action="index" class="btn btn-secondary">Cancel</a>
+                <button id="btnSubmit" class="btn btn-primary  mr-2" style="background-color:red;">Add</button>
+                <a asp-controller="Test" asp-action="index" class="btn btn-secondary" style="color:white; background-color:grey">Cancel</a>
             </div>
         </form>
     </div>
@@ -77,6 +93,37 @@
             $('#Date').datepicker({
             });
         })
+
+        function filters(rec) {
+            var url = "/test/GetAllQuestionsForSubject?";
+            console.log($(rec).parent().children().first().val());
+            var SubjectId = $(rec).parent().children().first().val()
+            $(".loader-wrapper").show();
+            $.get(url,
+                {
+                    SubId: SubjectId,
+                },
+                function (data) {
+                    $(".loader-wrapper").hide();
+                    console.log(data);
+                    createQuestionTr(data.questionList);
+                    //$("#indexPartialContent").replaceWith(data);
+                });
+        }
+
+        function createQuestionTr(data) {
+            trContent = "";
+
+            for (var i = 0; i < data.length; i++) {
+                trContent = trContent + "<tr class='table table-bordered'><td> " + (i + 1) + "</td><td>" + data[i].text + "</td><td><input type='checkbox' name='SelectedQuestionIds' value='" + data[i].id + "' /></td></tr>";
+            }
+            console.log(trContent);
+
+            $("#tblQuestion").html(trContent);
+
+
+        }
+                        
     </script>
 
 }

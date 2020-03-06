@@ -2,3 +2,12 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+function redirectToDetails(url) {
+    event.stopPropagation();
+    window.location.href = url;
+}
+function redirectToEdit(url) {
+    event.stopPropagation();
+    window.location.href = url;
+}

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineTestManagement.Abstraction.Repository;
 using OnlineTestManagement.Abstraction.Services;
 using OnlineTestManagement.Entities.ViewModels;
+using OnlineTestManagement.ViewModels;
 
 namespace OnlineTestManagement.Controllers
 {
@@ -52,6 +53,10 @@ namespace OnlineTestManagement.Controllers
             List<QuestionViewModel> QueList = _questionRepository.GetAllQuestions();
             List<IdNameViewModel> QuestionList = QueList.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Question }).ToList();
             ViewBag.QuestionsList = QuestionList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
+
+            List<SubjectViewModel> SubList = _subjectRepository.GetAllSubjects();
+            //List<IdNameViewModel> QuestionList = QueList.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Question }).ToList();
+            ViewBag.SubjectsList = SubList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Value });
 
             return View();
         }
@@ -109,6 +114,26 @@ namespace OnlineTestManagement.Controllers
         {
             _testService.DeleteTest(id);
             return RedirectToAction("Index", "Test");
+        }
+        #endregion
+
+        #region Index Partial
+        /// <summary>
+        /// This method is for partial view of product
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public IActionResult IndexPartial(int SubId)
+        {
+            return ViewComponent("Test", new { SubId, IsPartial = true });
+        }
+        #endregion
+
+        #region GetAllQuestionsForSubject
+        public TestQuestionListModel GetAllQuestionsForSubject(int SubId)
+        {
+            TestQuestionListModel model = _questionRepository.GetAllQuestionsForSubject(SubId);
+            return model;
         }
         #endregion
     }

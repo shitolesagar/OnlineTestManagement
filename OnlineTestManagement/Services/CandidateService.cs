@@ -92,7 +92,9 @@ namespace OnlineTestManagement.Services
             model = _candidateRepository.GetCandidateForEdit(id);
             string UniqueId = CreateGuid();
             _candidateUniqueIdRepository.AddUniqueId(id, UniqueId);
-            _emailService.SendEmail(model.EmailId, "Test", "Test Link");
+            string link = "https://localhost:44311/candidate/startTest?uniqueId=" + UniqueId;
+            var body = string.Format("<html><body>Hi Candidate<br /><p><a href='{0}'>Click here to start test</a></p><br />Regards<br />HR team<br />Omni-Bridge</body></html>", link);
+            _emailService.SendEmail(model.EmailId,body, "Test");
         }
         #endregion
 

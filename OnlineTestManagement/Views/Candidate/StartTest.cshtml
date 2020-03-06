@@ -3,7 +3,7 @@
     ViewData["Title"] = "StartTest";
 }
 
-<h1>Test</h1>
+<h2 style="color:red;">Test</h2>
 
 <input type="text" id="CandidateExamId" value="@Model.CandidateExamId" hidden="hidden" />
 <div class="accordion" id="accordionExample">
@@ -16,19 +16,19 @@
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#@("collapse" + i)" aria-expanded="true" aria-controls="collapseOne">
-                        @obj.Question
+                    <button class="btn btn-link" style="text-align:left; color:black;" type="button" data-toggle="collapse" data-target="#@("collapse" + i)" aria-expanded="true" aria-controls="collapseOne">
+                        @i.  @obj.Question
                     </button>
                 </h2>
             </div>
-            <div id="@("collapse" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="@("collapse" + i)" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <input type="text" id="@("QuestionId" + i)" data-questionid="" value="@obj.Id" hidden="hidden" />
                     <fieldset id="@("group" + i)">
-                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('a', '@obj.Id')" value=@obj.Option1 />@obj.Option1<br />
-                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('b', '@obj.Id')" value=@obj.Option2 />@obj.Option2<br />
-                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('c', '@obj.Id')" value=@obj.Option3 />@obj.Option3<br />
-                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('d', '@obj.Id')" value=@obj.Option4 />@obj.Option4<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('a', '@obj.Id')" value=@obj.Option1 />&ensp;@obj.Option1<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('b', '@obj.Id')" value=@obj.Option2 />&ensp;@obj.Option2<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('c', '@obj.Id')" value=@obj.Option3 />&ensp;@obj.Option3<br />
+                        <input type="radio" name="@("question" + i)" onclick="SubmitAnswer('d', '@obj.Id')" value=@obj.Option4 />&ensp;@obj.Option4<br />
                     </fieldset>
                 </div>
             </div>
@@ -36,7 +36,7 @@
     }
 </div>
 
-<td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("SubmitTest", "Candidate", new { CandidateExamId = Model.CandidateExamId})"'>Submit Test</button></td>
+<td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("SubmitTest", "Candidate", new { CandidateExamId = Model.CandidateExamId})"' style="background-color:red; margin-top:30px;">Submit Test</button></td>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

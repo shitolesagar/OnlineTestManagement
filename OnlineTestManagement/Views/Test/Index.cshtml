@@ -2,39 +2,42 @@
 @{
     ViewData["Title"] = "Index";
 }
-<button type="button" class="col-md-2" onclick="location.href='@Url.Action("Index","Home")'">Back</button>
+<link href="~/css/site.css" rel="stylesheet" />
+<script src="~/js/site.js"></script>
 <div class="row">
-    <h1 class="col-md-4">Index</h1>
-    <button type="button" class="col-md-4" onclick="location.href='@Url.Action("Add","Test")'">Add New Test</button>
+    <h2 class="col-md-6" style="color:red;">Test</h2>
+    <i title="Add New Test" class="fa fa-plus-circle col-md-6" onclick="location.href='@Url.Action("Add","Test")'" aria-hidden="true" style="font-size:40px; color:red; text-align:right; cursor:pointer;"></i>
 </div>
 
 <div id="indexPartialContent">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th width="20%">Name</th>
-                <th width="20%">Created By</th>
+                <th width="40%">Name</th>
+                @*<th width="20%">Created By</th>*@
                 <th width="20%" class="text-center">Manage</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var test in Model.TestList)
             {
-            <tr>
-                <td>@test.Name</td>
-                <td>@test.CreatedBy</td>
-                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Edit", "Test", new { id = test.Id})"'>Edit Test</button></td>
-                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Delete", "Test", new { id = test.Id})"'>Delete Test</button></td>
-                <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Test", new { id = test.Id})"'>Details</button></td>
-                @*<td class="text-center">
-            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/test/edit/@test.Id')"><i class="fa fa-pencil ml-3" aria-hidden="true"></i></span>
-            <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@test.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
-        </td>*@
-            </tr>
+                <tr style="background : #ececec; cursor:pointer;" onclick='window.location.href = "@Url.Action("Details", "Test", new { id = test.Id})"'>
+                    <td>@test.Name</td>
+                    @*<td>@test.CreatedBy</td>*@
+                    @*<td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Edit", "Test", new { id = test.Id})"'>Edit Test</button></td>
+                        <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Delete", "Test", new { id = test.Id})"'>Delete Test</button></td>
+                        <td><button type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Details", "Test", new { id = test.Id})"'>Details</button></td>*@
+                    <td class="text-center">
+                        @*<span title="Edit" onclick="redirectToEdit('/Test/edit/@test.Id')"><i class="fa fa-pencil f-16" aria-hidden="true"></i></span>*@
+                        <span title="Remove" onclick="redirectToEdit('/Test/delete/@test.Id')"><i class="fa fa-trash ml-3 f-16" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
 </div>
 
-<partial name="_deletePopup" />
+<button type="button" class="col-md-2" style="color:white; background-color:gray;" onclick="location.href='@Url.Action("Index","Home")'">Go To HomePage</button>
 
+<partial name="_deletePopup" />
+<script src="~/js/site.js"></script>
